@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import testRunner = require("vscode/lib/testrunner");
+import { ConsoleAndJsonReporter } from "./test_reporter";
 const onExit = require("signal-exit"); // tslint:disable-line:no-var-requires
 
 // Ensure we write coverage on exit.
@@ -17,7 +18,7 @@ onExit(() => {
 });
 
 testRunner.configure({
-	reporter: "list",
+	reporter: ConsoleAndJsonReporter,
 	slow: 1500,       // increased threshold before marking a test as slow
 	timeout: 10000,   // increased timeout because starting up Code, Analyzer, etc. is slooow
 	ui: "bdd",        // the TDD UI is being used in extension.test.ts (suite, test, etc.)
